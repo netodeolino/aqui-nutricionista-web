@@ -1,2 +1,21 @@
-# aqui-nutricionista-web
-Encontre uma nutricionista mais próxima de você
+# Aqui Nutricionista
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
