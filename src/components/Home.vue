@@ -72,10 +72,6 @@ export default {
 </script>
 
 <style scoped>
-.home {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
 .card {
   margin-bottom: 1rem;
 }

@@ -24,4 +24,8 @@ a {
 a:hover {
   color: #88f188 !important;
 }
+.home {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
 </style>
