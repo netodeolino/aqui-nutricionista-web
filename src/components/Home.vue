@@ -1,58 +1,86 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="container">
+    <header class="masthead text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 style="color: black">Texto aqui!</h1>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+              <div class="form-row">
+                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                  <input type="email" class="form-control form-control-lg" placeholder="Digite o nome da nutrionista...">
+                </div>
+                <div class="col-12 col-md-3">
+                  <button type="submit" class="btn btn-block btn-lg btn-primary">Pesquisar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-xl-9 mx-auto">
+            <h1 style="color: black">Talvez um aqui!</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div v-if="nutrionionistas != null && nutrionionistas.length > 0" class="row home">
+      <div class="col-10 col-md-4 mx-auto" :key="nut.id" v-for="nut in nutrionionistas">
+        <router-link class="card" :to="`usuario/${nut.id}`">
+          <img :src="nut.foto != null ? `${URL_API}${nut.foto}` : `https://meusanimais.com.br/wp-content/uploads/2017/01/os-gatos-crescem.jpg`"
+            class="card-img-top" :alt="nut.nome"
+          >
+          <div class="card-body">
+            <h5 class="card-title">{{ nut.nome }}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </router-link>
+      </div>
+    </div>
+    <div v-else>
+      <h2>Nenhuma</h2>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+import { URL_API } from '../util/constants'
+
 export default {
   name: 'Home',
-  props: {
-    msg: String
+  data() {
+    return {
+      URL_API,
+      nutrionionistas: null
+    }
+  },
+  created() {
+    this.getNutricionistas()
+  },
+  methods: {
+    getNutricionistas: function() {
+      axios
+        .get(`${URL_API}usuario/all-nutricionista`)
+        .then(res => {
+          this.nutrionionistas = res.data
+        })
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.home {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.card {
+  margin-bottom: 1rem;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.card-img-top {
+  width: 100%;
+  height: 250px;
 }
 </style>

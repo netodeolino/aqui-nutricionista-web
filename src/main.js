@@ -6,6 +6,9 @@ import App from './App.vue'
 import { store } from './store'
 import Notifications from 'vue-notification'
 
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 Vue.config.productionTip = false
 Vue.use(Notifications)
