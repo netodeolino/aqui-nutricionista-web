@@ -5,6 +5,7 @@ import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
 import Home from './components/Home'
 import Usuario from './components/Usuario'
+import Login from './components/Login'
 
 Vue.use(Router)
 
@@ -13,7 +14,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       components: {
         header: Nav,
         default: Home,
@@ -22,10 +23,19 @@ export default new Router({
     },
     {
       path: '/usuario/:id',
-      name: 'Usuario',
+      name: 'usuario',
       components: {
         header: Nav,
         default: Usuario,
+        footer: Footer
+      }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      components: {
+        header: Nav,
+        default: Login,
         footer: Footer
       }
     }

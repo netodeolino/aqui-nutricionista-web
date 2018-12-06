@@ -49,7 +49,7 @@ import axios from 'axios'
 import { URL_API } from '../util/constants'
 
 export default {
-  name: 'Home',
+  name: 'home',
   data() {
     return {
       URL_API,

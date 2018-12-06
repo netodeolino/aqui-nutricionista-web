@@ -14,7 +14,7 @@ import axios from 'axios'
 import { URL_API } from '../util/constants'
 
 export default {
-  name: 'Usuario',
+  name: 'usuario',
   data() {
     return {
       URL_API,
