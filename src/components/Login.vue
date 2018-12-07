@@ -7,10 +7,10 @@
             <h5 class="card-title text-center"><small>Digite seu email e sua senha</small></h5>
             <form role="form" class="form-signin" @submit.prevent="onSubmit()">
               <base-input id="email-input" alternative class="mb-3" placeholder="Email" addon-left-icon="fa fa-envelope"
-                required v-model="email" :valid="true" :error="erroEmail">
+                required v-model="email" :valid="$v.email.required && $v.email.email" :error="erroEmail" v-on:blur="dirtyEmail">
               </base-input>
               <base-input id="password-input" alternative class="mb-3" placeholder="Senha" addon-left-icon="fa fa-unlock-alt"
-                required v-model="senha" :valid="true" :error="erroSenha" type="password">
+                required v-model="senha" :valid="$v.senha.required && $v.senha.minLength" :error="erroSenha" v-on:blur="dirtySenha" type="password">
               </base-input>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Entrar</button>
             </form>
@@ -22,8 +22,10 @@
 </template>
 
 <script>
+import axios from 'axios'
 import BaseInput from './common/BaseInput'
-import { URL_API } from '../util/constants'
+import { URL_API, URL_USUARIO, URL_LOGIN } from '../util/constants'
+import { required, minLength, email } from 'vuelidate/lib/validators'
 
 export default {
   name: 'login',
@@ -32,7 +34,6 @@ export default {
   },
   data() {
     return {
-      URL_API,
       email: null,
       senha: null
     }
@@ -41,14 +42,56 @@ export default {
   },
   methods: {
     onSubmit() {
-    }
+      if (!this.validForm()) return
+      axios
+        .post(`${URL_API}${URL_USUARIO}${URL_LOGIN}`, {
+          email: this.email,
+          senha: this.senha
+        })
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    dirtyEmail() {
+      this.$v.email.$touch();
+    },
+    dirtySenha() {
+      this.$v.senha.$touch();
+    },
   },
   computed: {
     erroEmail() {
-      return 'Erro no email'
+      if (!this.$v.email.required && this.$v.email.$dirty) {
+        return 'Campo obrigatório.'
+      }
+      if (!this.$v.email.email && this.$v.email.$dirty) {
+        return 'Formato de email inválido.'
+      }
+      return null
     },
     erroSenha() {
-      return 'Erro na senha'
+      if (!this.$v.senha.required && this.$v.senha.$dirty) {
+        return 'Campo obrigatório.'
+      }
+      if (!this.$v.senha.minLength && this.$v.senha.$dirty) {
+        return `Deve conter no mínimo ${
+          this.$v.senha.$params.minLength.min
+        } caracteres.`
+      }
+      return null
+    }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    senha: {
+      required,
+      minLength: minLength(6)
     }
   }
 }
