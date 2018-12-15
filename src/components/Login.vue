@@ -49,18 +49,30 @@ export default {
           senha: this.senha
         })
         .then(res => {
-          console.log(res)
+          window.localStorage.setItem("token", res.data)
         })
         .catch(err => {
-          console.log(err)
+          this.$notify({
+            group: "not-aqui-nutricionista",
+            title: "Erro!",
+            text: `${err.response.data}`,
+            position: "top right",
+            type: "error"
+          })
         })
     },
     dirtyEmail() {
-      this.$v.email.$touch();
+      this.$v.email.$touch()
     },
     dirtySenha() {
-      this.$v.senha.$touch();
+      this.$v.senha.$touch()
     },
+    validForm() {
+      this.dirtySenha()
+      this.dirtyEmail()
+      if (this.$v.$invalid) return false
+      return true
+    }
   },
   computed: {
     erroEmail() {

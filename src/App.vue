@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <notifications group="not-aqui-nutricionista" />
     <router-view name="header"></router-view>
     <router-view/>
     <router-view name="footer"></router-view>
