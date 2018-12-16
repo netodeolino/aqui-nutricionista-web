@@ -49,7 +49,14 @@ export default {
           senha: this.senha
         })
         .then(res => {
-          window.localStorage.setItem("token", res.data)
+          window.localStorage.setItem('token', res.data.token)
+          window.localStorage.setItem('pathFoto', res.data.foto)
+          window.localStorage.setItem('usuarioId', res.data.usuarioId)
+          this.$store.commit('setToken', res.data.token)
+          this.$store.commit('setPathFoto', res.data.foto)
+          this.$store.commit('setUsuarioId', res.data.usuarioId)
+
+          this.$router.push({ path: "/" })
         })
         .catch(err => {
           this.$notify({

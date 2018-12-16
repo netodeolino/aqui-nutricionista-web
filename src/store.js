@@ -5,21 +5,44 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    users: null
+    token: window.localStorage.getItem("token") || null,
+    pathFoto: window.localStorage.getItem("pathFoto") || null,
+    usuarioId: window.localStorage.getItem("usuarioId") || null
   },
   getters: {
-    isUsers: state => {
-      return state.users != null;
+    isLogged: state => {
+      return state.token != null
+    },
+    getPathFoto: state => {
+      return state.pathFoto
+    },
+    getUsuarioId: state => {
+      return state.usuarioId
     }
   },
   mutations: {
-    setUsers(state, payload) {
-      state.users = payload;
+    setToken(state, payload) {
+      state.token = payload
+    },
+    setPathFoto(state, payload) {
+      state.pathFoto = payload
+    },
+    setUsuarioId(state, payload) {
+      state.usuarioId = payload
     }
   },
   actions: {
-    setUsers({ commit }, users) {
-      commit("setUsers", users);
+    login({ commit }, token) {
+      commit("setToken", token)
+    },
+    logout({ commit }) {
+      commit("setToken", null)
+    },
+    setPathFoto({ commit }, pathFoto) {
+      commit("setPathFoto", pathFoto)
+    },
+    setUsuarioId({ commit }, usuarioId) {
+      commit("usuarioId", usuarioId)
     }
   }
 })
