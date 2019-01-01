@@ -28,6 +28,13 @@ export default new Router({
         header: Nav,
         default: Usuario,
         footer: Footer
+      },
+      beforeEnter: (to, from, next) => {
+        if (window.localStorage.getItem('token') != null) {
+          
+        } else {
+          next('/login')
+        }
       }
     },
     {

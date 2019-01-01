@@ -122,7 +122,7 @@ export default {
       };
     },
     hasIcon() {
-      const { addonRight, addonLeft } = this.$slots;
+      const { addonRight, addonLeft } = this.$slots
       return (
         addonRight !== undefined ||
         addonLeft !== undefined ||
@@ -133,22 +133,22 @@ export default {
   },
   methods: {
     updateValue(evt) {
-      let value = evt.target.value;
-      this.$emit("input", value);
+      let value = evt.target.value
+      this.$emit("input", value)
     },
     onFocus(value) {
       this.focused = true;
-      this.$emit("focus", value);
+      this.$emit("focus", value)
     },
     onBlur(value) {
       this.focused = false;
-      this.$emit("blur", value);
+      this.$emit("blur", value)
     }
   }
 };
 </script>
 <style>
 .feedback-container {
-  padding-left: 10px;
+  padding-left: 10px
 }
 </style>
