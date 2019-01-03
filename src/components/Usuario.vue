@@ -18,11 +18,11 @@ export default {
   data() {
     return {
       URL_API,
-      usuario: null
+      usuario: {}
     }
   },
   created() {
-    this.getUsuario();
+    // this.getUsuario()
   },
   methods: {
     getUsuario: function() {

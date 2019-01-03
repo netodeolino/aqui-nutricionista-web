@@ -8,7 +8,7 @@ import Home from './components/Home'
 import Usuario from './components/Usuario'
 import Login from './components/Login'
 
-import { URL_API, URL_USUARIO, URL_TOKEN_VALIDO } from './util/constants'
+import { URL_API, URL_TOKEN_VALIDO, TOKEN_INVALIDO } from './util/constants'
 
 Vue.use(Router)
 
@@ -35,22 +35,22 @@ export default new Router({
       beforeEnter: (to, from, next) => {
         if (window.localStorage.getItem('token') != null) {
           axios
-            .get(`${URL_API}${URL_USUARIO}${URL_TOKEN_VALIDO}`, {
+            .get(`${URL_API}${URL_TOKEN_VALIDO}`, {
               headers: {
                 'aqui-nutricionista-token': window.localStorage.getItem('token')
               }
             })
             .then(res => {
-              console.log('------------- ', res.data, ' -------------')
+              if (res.data == false) {
+                throw TOKEN_INVALIDO
+              }
               next()
             })
-            .catch(err => {
-              console.log('------------- ', err.response, ' -------------')
+            .catch(() => {
               window.localStorage.removeItem('token')
               next('/')
             })
         } else {
-          console.log('------------- ', 'AQUI PORQUE?', ' -------------')
           next('/login')
         }
       }
