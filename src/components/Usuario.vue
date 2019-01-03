@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios'
-import { URL_API } from '../util/constants'
+import { URL_API, URL_USUARIO } from '../util/constants'
 
 export default {
   name: 'usuario',
@@ -22,14 +22,27 @@ export default {
     }
   },
   created() {
-    // this.getUsuario()
+    this.getUsuario()
   },
   methods: {
     getUsuario: function() {
       axios
-        .get(`${URL_API}usuario/${this.$route.params.id}`)
+        .get(`${URL_API}${URL_USUARIO}${this.$route.params.id}`, {
+          headers: {
+            'aqui-nutricionista-token': window.localStorage.getItem('token')
+          }
+        })
         .then(res => {
           this.usuario = res.data
+        })
+        .catch(err => {
+          this.$notify({
+            group: "not-aqui-nutricionista",
+            title: "Erro!",
+            text: `${err.response.data}`,
+            position: "top right",
+            type: "error"
+          })
         })
     }
   }

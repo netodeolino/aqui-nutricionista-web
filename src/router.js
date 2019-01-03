@@ -43,8 +43,9 @@ export default new Router({
             .then(res => {
               if (res.data == false) {
                 throw TOKEN_INVALIDO
+              } else {
+                next()
               }
-              next()
             })
             .catch(() => {
               window.localStorage.removeItem('token')

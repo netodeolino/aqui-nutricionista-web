@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Aqui Nutricionista</a>
+      <router-link class="navbar-brand" to="/">Aqui Nutricionista</router-link>
       <!-- <ul class="navbar-nav navbar-nav-hover align-items-lg-center ml-lg-auto">
         <base-dropdown tag="li" class="nav-item">
           <a slot="title" href="#" class="nav-link" data-toggle="dropdown" role="button">
