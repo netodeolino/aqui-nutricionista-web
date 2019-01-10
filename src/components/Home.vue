@@ -10,11 +10,8 @@
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
             <form>
               <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input type="email" class="form-control form-control-lg" placeholder="Digite o nome da nutrionista...">
-                </div>
-                <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">Pesquisar</button>
+                <div class="col-12 col-md-12 mb-2 mb-md-0">
+                  <input v-model="nome" type="text" class="form-control form-control-lg" placeholder="Pesquisar nutricionistas pelo nome...">
                 </div>
               </div>
             </form>
@@ -52,8 +49,10 @@ export default {
   name: 'home',
   data() {
     return {
+      nome: null,
       URL_API,
-      nutrionionistas: null
+      nutrionionistas: null,
+      nutrionionistasBackup: null
     }
   },
   created() {
@@ -65,7 +64,19 @@ export default {
         .get(`${URL_API}usuario/all-nutricionista`)
         .then(res => {
           this.nutrionionistas = res.data
+          this.nutrionionistasBackup = res.data
         })
+    }
+  },
+  watch: {
+    nome: function() {
+      if (this.nome.length <= 0) {
+        this.nutrionionistas = this.nutrionionistasBackup
+      } else {
+        this.nutrionionistas = this.nutrionionistas.filter(nut => {
+          return nut.nome.toUpperCase().includes(this.nome.toUpperCase())
+        })
+      }
     }
   }
 }
