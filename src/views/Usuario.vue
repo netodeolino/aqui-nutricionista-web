@@ -6,12 +6,27 @@
       <h5>{{ usuario.nome }}</h5>
       <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
     </div>
+    <!-- <GmapMap
+      :center="{lat:10, lng:10}"
+      :zoom="7"
+      map-type-id="terrain"
+      style="width: 500px; height: 300px"
+    >
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="true"
+        @click="center=m.position"
+      />
+    </GmapMap> -->
   </section>
 </template>
 
 <script>
 import axios from 'axios'
-import { URL_API, URL_USUARIO } from '../util/constants'
+import { URL_API, URL_USUARIO } from '@/util/constants'
 
 export default {
   name: 'usuario',

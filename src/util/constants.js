@@ -4,3 +4,5 @@ export const URL_LOGIN = 'login/'
 export const URL_TOKEN_VALIDO = 'token-valido/'
 
 export const TOKEN_INVALIDO = 'Token inválido'
+
+export const SERVICO_INDISPONIVEL = 'Serviço indisponível'
