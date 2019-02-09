@@ -23,7 +23,7 @@
 
 <script>
 import axios from 'axios'
-import BaseInput from './common/BaseInput'
+import BaseInput from '../components/common/BaseInput'
 import { URL_API, URL_USUARIO, URL_LOGIN } from '../util/constants'
 import { required, minLength, email } from 'vuelidate/lib/validators'
 

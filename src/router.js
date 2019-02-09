@@ -4,9 +4,9 @@ import axios from 'axios'
 
 import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
-import Home from './components/Home'
-import Usuario from './components/Usuario'
-import Login from './components/Login'
+import Home from './views/Home'
+import Usuario from './views/Usuario'
+import Login from './views/Login'
 
 import { URL_API, URL_TOKEN_VALIDO, TOKEN_INVALIDO } from './util/constants'
 
