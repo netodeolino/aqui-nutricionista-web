@@ -46,6 +46,7 @@ import axios from 'axios'
 import { URL_API } from '../util/constants'
 
 export default {
+  components: {},
   name: 'home',
   data() {
     return {
