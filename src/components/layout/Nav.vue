@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <router-link class="navbar-brand" to="/">Aqui Nutricionista</router-link>
+      <router-link class="navbar-brand" to="/"><v-icon x-large color="#008f00">place</v-icon></router-link>
+      <v-text-field class="barra-buscar" hide-details label="Pesquisar Nutricionista" outline></v-text-field>
     </div>
   </nav>
 </template>
@@ -36,3 +37,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .barra-buscar {
+    margin-top: 5rem
+  }
+</style>
