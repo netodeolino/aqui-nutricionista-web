@@ -29,7 +29,7 @@
         <span>Ver perfil</span>
         <v-icon>person</v-icon>
       </v-btn>
-      <v-btn flat color="teal" value="nearby">
+      <v-btn v-on:click="openProfile()" flat color="teal" value="nearby">
         <span>Localização</span>
         <v-icon>place</v-icon>
       </v-btn>
@@ -86,28 +86,28 @@ export default {
   }),
   computed: {
     computeCardLayout () {
-      return (this.mini) ? 'row' : 'column';
+      return (this.mini) ? 'row' : 'column'
     },
     computeTextAlgin () {
-      return (this.mini) ? 'text-sm-right' : 'text-sm-center';
+      return (this.mini) ? 'text-sm-right' : 'text-sm-center'
     },
     computeAvatarSize () {
-      return (this.mini) ? '48' : '96';
+      return (this.mini) ? '48' : '96'
     },
     showAvatar () {
-      return this.avatarSrc !== null;
+      return this.avatarSrc !== null
     },
     showBottomNav () {
-      return (this.mini === false && this.bottomNav); 
+      return (this.mini === false && this.bottomNav)
     },
     showTopNav () {
-      return (this.mini === false && this.topNav); 
+      return (this.mini === false && this.topNav)
     }
   },
   methods: {
     openProfile: function() {
       if (this.userId) {
-        this.$router.push({ path: `/usuario/${this.userId}` });
+        this.$router.push({ path: `/usuario/${this.userId}` })
       }
     }
   }

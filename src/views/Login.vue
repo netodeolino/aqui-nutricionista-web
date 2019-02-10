@@ -4,7 +4,9 @@
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
-            <h5 class="card-title text-center"><small>Digite seu email e sua senha</small></h5>
+            <v-img style="margin-bottom: 1rem" height="150" :src="require('@/assets/bg.jpg')">
+              <h4 style="margin-top: 4rem" class="card-title text-center"><small>Digite seu email e sua senha</small></h4>
+            </v-img>
             <form role="form" class="form-signin" @submit.prevent="onSubmit()">
               <base-input id="email-input" alternative class="mb-3" placeholder="Email" addon-left-icon="fa fa-envelope"
                 required v-model="email" :valid="$v.email.required && $v.email.email" :error="erroEmail" v-on:blur="dirtyEmail">

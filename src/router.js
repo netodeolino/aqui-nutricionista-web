@@ -49,7 +49,7 @@ export default new Router({
             })
             .catch(() => {
               window.localStorage.removeItem('token')
-              next('/')
+              next('/login')
             })
         } else {
           next('/login')
