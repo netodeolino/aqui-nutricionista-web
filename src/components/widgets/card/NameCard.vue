@@ -14,7 +14,7 @@
       <v-card-text>
         <div class="layout ma-0 align-center" :class="computeCardLayout">
           <v-avatar :size="computeAvatarSize" color="primary">
-            <img :src="`${URL_API}${avatarSrc}`" v-bind:alt="name" v-if="showAvatar">
+            <img :src="`${URL_API}${userId}-${avatarSrc}`" v-bind:alt="name" v-if="showAvatar">
             <span v-else class="white--text headline">{{ name.charAt(0) }}</span>
           </v-avatar>
           <div class="flex" :class="computeTextAlgin">

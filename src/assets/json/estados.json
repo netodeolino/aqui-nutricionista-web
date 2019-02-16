@@ -1,0 +1,170 @@
+[
+  {
+    "id": "4f9cd31e-b364-4b9d-a371-e7d35c0b9fa6",
+    "nome": "RONDÔNIA",
+    "numero": 11,
+    "sigla": "RO"
+  },
+  {
+    "id": "28f30141-7cd9-4d5f-8ee9-3b1b63ac38c4",
+    "nome": "ACRE",
+    "numero": 12,
+    "sigla": "AC"
+  },
+  {
+    "id": "4a70b482-fa50-4006-a458-965306b0787f",
+    "nome": "AMAZONAS",
+    "numero": 13,
+    "sigla": "AM"
+  },
+  {
+    "id": "569a8722-4fc7-4754-bf2b-35ec103c7c48",
+    "nome": "RORAIMA",
+    "numero": 14,
+    "sigla": "RR"
+  },
+  {
+    "id": "a01729d8-2cab-41aa-9779-029e1bb204ea",
+    "nome": "PARÁ",
+    "numero": 15,
+    "sigla": "PA"
+  },
+  {
+    "id": "8600ae88-6ed0-41e3-ba01-03869490c368",
+    "nome": "AMAPÁ",
+    "numero": 16,
+    "sigla": "AP"
+  },
+  {
+    "id": "63b06ea8-b0d9-4dd5-9a54-e834848442e5",
+    "nome": "TOCANTINS",
+    "numero": 17,
+    "sigla": "TO"
+  },
+  {
+    "id": "9d9657da-5dd5-4195-b03f-8ff5ae5c973f",
+    "nome": "MARANHÃO",
+    "numero": 21,
+    "sigla": "MA"
+  },
+  {
+    "id": "82a41961-8d24-463f-b3f4-79ad879aca27",
+    "nome": "PIAUÍ",
+    "numero": 22,
+    "sigla": "PI"
+  },
+  {
+    "id": "4ffe5cb8-1375-45e9-bab5-11f1292cae64",
+    "nome": "CEARÁ",
+    "numero": 23,
+    "sigla": "CE"
+  },
+  {
+    "id": "481dfa69-87dd-4ee3-a8f6-84c9ea2398f7",
+    "nome": "RIO GRANDE DO NORTE",
+    "numero": 24,
+    "sigla": "RN"
+  },
+  {
+    "id": "5486b3f1-38e2-4713-960c-304d02ba66b4",
+    "nome": "PARAÍBA",
+    "numero": 25,
+    "sigla": "PB"
+  },
+  {
+    "id": "43d43c51-9197-4109-81cf-2d76cc29ac39",
+    "nome": "PERNAMBUCO",
+    "numero": 26,
+    "sigla": "PE"
+  },
+  {
+    "id": "49f02b73-00a1-449b-b02e-ec1063f7d845",
+    "nome": "ALAGOAS",
+    "numero": 27,
+    "sigla": "AL"
+  },
+  {
+    "id": "cf3739df-3d7b-4acd-b50d-f9e3268626e0",
+    "nome": "SERGIPE",
+    "numero": 28,
+    "sigla": "SE"
+  },
+  {
+    "id": "f2fa9812-60fc-4732-abc4-36752538f9de",
+    "nome": "BAHIA",
+    "numero": 29,
+    "sigla": "BA"
+  },
+  {
+    "id": "59b2d898-ea69-4342-8e87-2b5a61f02c7b",
+    "nome": "MINAS GERAIS",
+    "numero": 31,
+    "sigla": "MG"
+  },
+  {
+    "id": "4593f748-cd90-4bc1-9d2b-d8a053d929fc",
+    "nome": "ESPÍRITO SANTO",
+    "numero": 32,
+    "sigla": "ES"
+  },
+  {
+    "id": "bed5ab9f-7b5b-453e-a9e8-5e911947d47e",
+    "nome": "RIO DE JANEIRO",
+    "numero": 33,
+    "sigla": "RJ"
+  },
+  {
+    "id": "20fa1262-8b52-4951-bfaa-82b7816505d9",
+    "nome": "SÃO PAULO",
+    "numero": 35,
+    "sigla": "SP"
+  },
+  {
+    "id": "ca899846-5033-4110-8046-1008f4004b27",
+    "nome": "PARANÁ",
+    "numero": 41,
+    "sigla": "PR"
+  },
+  {
+    "id": "af17c7e1-15ca-4d83-adae-5ae26f9ee758",
+    "nome": "SANTA CATARINA",
+    "numero": 42,
+    "sigla": "SC"
+  },
+  {
+    "id": "a0a8afed-470e-4b4c-992d-cb7a921a8cf3",
+    "nome": "RIO GRANDE DO SUL",
+    "numero": 43,
+    "sigla": "RS"
+  },
+  {
+    "id": "660aba7b-93f1-4db1-809a-26339e2548a3",
+    "nome": "MATO GROSSO DO SUL",
+    "numero": 50,
+    "sigla": "MS"
+  },
+  {
+    "id": "eafcc277-6148-4f53-9476-6e456561bf1e",
+    "nome": "MATO GROSSO",
+    "numero": 51,
+    "sigla": "MT"
+  },
+  {
+    "id": "8810f35f-4df0-4e8a-ac15-9bc629032a0f",
+    "nome": "GOIÁS",
+    "numero": 52,
+    "sigla": "GO"
+  },
+  {
+    "id": "c6a21eed-bab0-482e-877d-c86997f1b12c",
+    "nome": "DISTRITO FEDERAL",
+    "numero": 53,
+    "sigla": "DF"
+  },
+  {
+    "id": "4241b3f5-3099-4550-b5ad-e8876cce14b8",
+    "nome": "UNIÃO",
+    "numero": 54,
+    "sigla": "BR"
+  }
+ ]

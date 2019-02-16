@@ -23,6 +23,7 @@ Vue.use(VueGoogleMaps, {
 })
 
 axios.defaults.headers.post['Content-Type'] = 'application/json'
+
 Vue.config.productionTip = false
 Vue.use(GlobalDirectives)
 Vue.use(Notifications)

@@ -8,16 +8,10 @@
           </name-card>
         </v-flex>
       </v-layout>
-      <v-layout align-center justify-center row v-else>
-        <div class="mr-3 hidden-sm-and-down">
-          <img src="../assets/erro/500.svg" alt="">
-        </div>
+      <v-layout align-center justify-center row v-if="nutrionionistas == null || nutrionionistas.length == 0">
         <div class="text-md-center">
-          <h1>500</h1>
-          <h2 class="my-3 headline ">Sorry, the server is down.</h2>
-          <div>
-            <!-- <v-btn color="primary" @click="goHome">Go Home</v-btn> -->
-          </div>
+          <h1>:(</h1>
+          <h2 class="my-3 headline">Desculpa, no momento não existem Nutricionistas cadastrados.</h2>
         </div>
       </v-layout>
     </section>
