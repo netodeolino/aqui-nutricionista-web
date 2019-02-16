@@ -60,7 +60,6 @@ export default new Router({
       path: '/login',
       name: 'login',
       components: {
-        header: Nav,
         default: Login,
         footer: Footer
       }

@@ -1,20 +1,14 @@
 <template>
   <v-container fluid fill-height class="pa-0 ma-0 white">
     <section class="container">
-      <!-- <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-        <img :src="usuario.foto != null ? `${URL_API}${usuario.foto}` : `https://meusanimais.com.br/wp-content/uploads/2017/01/os-gatos-crescem.jpg`"
-          class="img-fluid rounded-circle mb-3" alt="">
-        <h5>{{ usuario.nome }}</h5>
-        <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-      </div> -->
       <v-layout column class="pa-0 ma-0">
         <v-card class="elevation-0">
           <v-img height="380" :src="require('@/assets/bg.jpg')">
             <v-layout column align-center justify-center>
               <v-avatar size="200" class="mx-5">
-                <img :src="`${URL_API}${usuario.foto}`" :alt="usuario.nome">
+                <img :src="`${URL_API}${usuario.id}-${usuario.foto}`" :alt="usuario.nome">
               </v-avatar>
-              <h1 class="white--text">{{usuario.name}}</h1>
+              <h1 class="white--text">{{usuario.nome}}</h1>
             </v-layout>
           </v-img>
           <v-card-text class="pa-0">
@@ -95,8 +89,8 @@
                             <v-icon color="teal">location_on</v-icon>
                           </v-list-tile-action>
                           <v-list-tile-content>
-                            <v-list-tile-title>Cidade, Bairro</v-list-tile-title>
-                            <v-list-tile-sub-title>Endereço</v-list-tile-sub-title>
+                            <v-list-tile-title>{{cidade.nome}}, {{usuario.endereco.bairro}}</v-list-tile-title>
+                            <v-list-tile-sub-title>{{usuario.endereco.rua}}, {{usuario.endereco.numero}}</v-list-tile-sub-title>
                           </v-list-tile-content>
                         </v-list-tile>
                       </v-list>
@@ -136,13 +130,17 @@
 <script>
 import axios from 'axios'
 import { URL_API, URL_USUARIO } from '@/util/constants'
+import cidades from '@/assets/json/cidades'
 
 export default {
   name: 'usuario',
   data() {
     return {
       URL_API,
-      usuario: {},
+      usuario: {
+        endereco: {}
+      },
+      cidade: {},
       selectedTab: null,
       markers: null /* [{
           position: {lat: 10.0, lng: 10.0}
@@ -164,6 +162,7 @@ export default {
         })
         .then(res => {
           this.usuario = res.data
+          this.getCidade()
         })
         .catch(err => {
           this.$notify({
@@ -174,6 +173,16 @@ export default {
             type: "error"
           })
         })
+    },
+    getCidade() {
+      if (this.usuario != null && this.usuario.endereco != null) {
+        for (let i = 0; i < cidades.length; i++) {
+          if (cidades[i].id == this.usuario.endereco.fk_cidade_id) {
+            this.cidade = cidades[i]
+            break
+          }
+        }
+      }
     }
   }
 }
