@@ -1,28 +1,30 @@
 <template>
   <section class="container text-center home">
     <div class="row">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="col-sm-10 col-md-10 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
             <v-img style="margin-bottom: 1rem" height="150" :src="require('@/assets/bg.jpg')">
-              <h4 style="margin-top: 4rem" class="card-title text-center"><small>Digite seu email e sua senha</small></h4>
+              <h4 style="margin-top: 4rem" class="card-title text-center"><small>Preencha as informações abaixo</small></h4>
             </v-img>
             <form role="form" class="form-signin" @submit.prevent="onSubmit()">
+              <base-input id="nome-input" alternative class="mb-3" placeholder="Nome" addon-left-icon="fa fa-user"
+                required v-model="nome" :valid="$v.nome.required" :error="erroNome" v-on:blur="dirtyNome">
+              </base-input>
+              <base-input id="telefone-input" alternative class="mb-3" placeholder="Telefone" addon-left-icon="fa fa-phone"
+                required v-model="telefone" :valid="$v.telefone.required" :error="erroTelefone" v-on:blur="dirtyTelefone">
+              </base-input>
+              <base-selector v-model="endereco.cidade" :options="cidades" placeholder="Cidade" alternative class="my-3"
+                  addon-left-icon="fa fa-building-o" :error="erroCidade" :valid="$v.endereco.cidade.required"/>
               <base-input id="email-input" alternative class="mb-3" placeholder="Email" addon-left-icon="fa fa-envelope"
                 required v-model="email" :valid="$v.email.required && $v.email.email" :error="erroEmail" v-on:blur="dirtyEmail">
               </base-input>
               <base-input id="password-input" alternative class="mb-3" placeholder="Senha" addon-left-icon="fa fa-unlock-alt"
                 required v-model="senha" :valid="$v.senha.required && $v.senha.minLength" :error="erroSenha" v-on:blur="dirtySenha" type="password">
               </base-input>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Entrar</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Cadastrar</button>
             </form>
           </div>
-        </div>
-        <div class="row">
-          <p class="col-md-6 col-12"><b>Não possue uma conta?</b></p>
-          <button class="col-md-5 col-12 btn green accent-3 btn-block" type="button" v-on:click="openCadastrar()" style="margin-bottom: .7rem">
-            Quero me cadastrar
-          </button>
         </div>
       </div>
     </div>
@@ -32,33 +34,37 @@
 <script>
 import axios from 'axios'
 import BaseInput from '../components/common/BaseInput'
-import { URL_API, URL_USUARIO, URL_LOGIN } from '../util/constants'
+import BaseSelector from '../components/common/BaseSelector'
+import { URL_API, URL_USUARIO, URL_CADASTRO } from '../util/constants'
 import { required, minLength, email } from 'vuelidate/lib/validators'
+import cidades from '../assets/json/cidades'
 
 export default {
-  name: 'login',
+  name: 'cadastro',
   components: {
-    BaseInput
+    BaseInput,
+    BaseSelector
   },
   data() {
     return {
+      nome: null,
+      telefone: null,
       email: null,
-      senha: null
+      senha: null,
+      endereco: {},
+      cidades
     }
   },
   methods: {
     onSubmit() {
       if (!this.validForm()) return
       axios
-        .post(`${URL_API}${URL_USUARIO}${URL_LOGIN}`, {
+        .post(`${URL_API}${URL_USUARIO}${URL_CADASTRO}`, {
           email: this.email,
           senha: this.senha
         })
         .then(res => {
-          window.localStorage.setItem('token', res.data.token)
-          this.$store.commit('setToken', res.data.token)
-
-          this.$router.push({ path: "/" })
+          //this.$router.push({ path: "/" })
         })
         .catch(err => {
           this.$notify({
@@ -69,6 +75,12 @@ export default {
             type: "error"
           })
         })
+    },
+    dirtyNome() {
+      this.$v.nome.$touch()
+    },
+    dirtyTelefone() {
+      this.$v.telefone.$touch()
     },
     dirtyEmail() {
       this.$v.email.$touch()
@@ -81,12 +93,30 @@ export default {
       this.dirtyEmail()
       if (this.$v.$invalid) return false
       return true
-    },
-    openCadastrar: function() {
-      this.$router.push({ path: 'cadastrar' })
     }
   },
   computed: {
+    erroNome() {
+      if (!this.$v.nome.required && this.$v.nome.$dirty) {
+        return 'Campo obrigatório.'
+      }
+      return null
+    },
+    erroTelefone() {
+      if (!this.$v.telefone.required && this.$v.telefone.$dirty) {
+        return 'Campo obrigatório.'
+      }
+      return null
+    },
+    erroCidade() {
+      if (
+        !this.$v.endereco.cidade.required &&
+        !this.$v.endereco.cidade.$model &&
+        this.$v.endereco.cidade.$dirty
+      ) {
+        return "Campo obrigatório.";
+      }
+    },
     erroEmail() {
       if (!this.$v.email.required && this.$v.email.$dirty) {
         return 'Campo obrigatório.'
@@ -109,6 +139,12 @@ export default {
     }
   },
   validations: {
+    nome: {
+      required
+    },
+    telefone: {
+      required
+    },
     email: {
       required,
       email
@@ -116,15 +152,18 @@ export default {
     senha: {
       required,
       minLength: minLength(6)
+    },
+    endereco: {
+      cidade: {
+        required
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-.card-signin {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+.button.btn.dropdown-toggle.btn-default {
+  padding: 1.25rem !important;
 }
 </style>

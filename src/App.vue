@@ -32,4 +32,10 @@ a:hover {
 .theme--light.v-text-field--outline > .v-input__control > .v-input__slot {
   border: 1px solid rgba(0,143,0,0.90) !important;
 }
+.select {
+  margin-top: 15px;
+}
+.pointer {
+  cursor: pointer;
+}
 </style>

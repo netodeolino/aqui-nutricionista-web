@@ -2,11 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import axios from 'axios'
 
+/* Components */
 import Nav from './components/layout/Nav'
 import Footer from './components/layout/Footer'
+
+/* Views */
 import Home from './views/Home'
 import Usuario from './views/Usuario'
 import Login from './views/Login'
+import Cadastro from './views/Cadastro'
 
 import { URL_API, URL_TOKEN_VALIDO, TOKEN_INVALIDO } from './util/constants'
 
@@ -61,6 +65,14 @@ export default new Router({
       name: 'login',
       components: {
         default: Login,
+        footer: Footer
+      }
+    },
+    {
+      path: '/cadastrar',
+      name: 'cadastro',
+      components: {
+        default: Cadastro,
         footer: Footer
       }
     }
