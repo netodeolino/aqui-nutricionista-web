@@ -12,7 +12,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.14.6",
     "roboto-fontface": "*",
     "vue": "^2.5.21",
